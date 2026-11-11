@@ -1,0 +1,11 @@
+name: artemis-owner-proof
+version: 0.0.3
+description: "Artemis: mobile web companion for canonical Hermes Bot Chats using full-owner Web Access."
+author: Matterweave Studio
+kind: backend
+requires_hermes: '>=0.23.0'
+capabilities:
+  provides_tools: []
+  provides_hooks: []
+  provides_middleware: []
+  requires_env: []

@@ -1,0 +1,13 @@
+{
+  "name": "artemis-hermes-companion",
+  "version": "0.0.3",
+  "private": true,
+  "type": "module",
+  "description": "Development checks for the Artemis Hermes web companion; no Node runtime required by the plugin.",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test tests/test_*.mjs",
+    "check": "node scripts/check.mjs",
+    "build:markdown": "node scripts/build_markdown.mjs"
+  }
+}

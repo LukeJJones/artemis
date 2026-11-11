@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<meta name="color-scheme" content="light dark">
+<meta name="referrer" content="no-referrer">
+<title>Artemis</title>
+<link rel="icon" type="image/png" sizes="180x180" href="/dashboard-plugins/artemis-owner-proof/assets/apple-touch-icon-180.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/dashboard-plugins/artemis-owner-proof/assets/apple-touch-icon-180.png">
+<script src="./assets/appearance.js"></script>
+<link rel="stylesheet" href="./assets/chat.css">
+<script type="module" src="/dashboard-plugins/artemis-owner-proof/assets/app.mjs"></script>
+</head>
+<body>
+<a id="skip" class="skip-link" href="#transcript">Skip to content</a>
+<div class="app">
+  <div class="conversation-context" role="region" aria-label="History and conversation information">
+  <header class="chathead nav-head" aria-label="Conversation navigation">
+    <button id="navToggle" class="icon secondary" type="button" aria-label="Open navigation" aria-haspopup="dialog" aria-controls="navigation" aria-expanded="false"><svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></svg></button>
+    <div class="identity"><span id="identity-avatar" class="avatar" aria-hidden="true" title="Initial avatar; no verified portrait supplied">?</span><h1 id="conversation-name">Choose bot</h1></div>
+    <button id="menuToggle" class="icon secondary" type="button" aria-label="Conversation options" aria-haspopup="dialog" aria-controls="context-menu" aria-expanded="false"><svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+  </header>
+  <main id="home-view" class="home-view" aria-label="Home" tabindex="0" data-filter="all" hidden>
+    <h2>Your bots.</h2><p>A conversation, within reach.</p>
+
+    <nav class="home-filters" aria-label="Conversation type" hidden>
+      <button id="home-all-filter" type="button" aria-pressed="true">All</button>
+      <button id="home-bots-filter" type="button" aria-pressed="false">Bots</button>
+      <button id="home-rooms-filter" type="button" aria-pressed="false">Rooms</button>
+    </nav>
+    <p id="home-summary" class="home-caption">All currently shows bots only.</p>
+    <p id="home-status" role="status">Finding your bots…</p>
+    <nav id="home-bots" class="home-roster" aria-label="Available bots on this host" hidden></nav>
+    <section id="home-rooms" aria-label="Rooms" hidden><h3>Rooms aren’t available in Artemis yet.</h3><p>Your private bot conversations are available in All and Bots.</p></section>
+  </main>
+  <main id="unavailable-view" class="home-view" aria-label="Unavailable destination" tabindex="0" hidden><h2>Conversation unavailable.</h2><p>No other bot or default profile was selected. Choose a verified bot in navigation.</p><a class="button secondary" href="#view=home">Go to Home</a></main>
+  <main id="transcript" aria-label="Selected bot conversation" role="log" aria-live="off" tabindex="0">
+    <div id="empty" class="empty"><p id="empty-eyebrow" class="eyebrow">YOUR BOTS, WITHIN REACH</p><h2 id="empty-title">Finding your bots…</h2><p id="empty-description">Checking this Hermes connection. No conversation is opened automatically.</p><nav id="chooser-bots" class="navigation-list" aria-label="Available bots" hidden></nav></div>
+    <div id="messages"></div>
+    <div id="bot-activity" class="bot-activity" role="group" aria-label="Bot activity" aria-live="off" hidden><div class="avatar" aria-hidden="true">?</div><span>Working<span class="sr-only">…</span></span><span class="activity-dots" aria-hidden="true"><span></span><span></span><span></span></span></div>
+  <section class="conversation-info system-notice" role="group" aria-label="System notice" data-attention="false">
+    <svg class="notice-icon" aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
+    <div><p id="home-toast-caption" class="home-toast-caption"></p><span class="system-label">System</span><p id="notice" class="notice">Not connected. Your draft stays in this page; nothing is queued.</p>
+    <div class="actions"><button id="connect" class="secondary" type="button">Connect</button><button id="start" class="secondary" type="button" hidden>Open or create Bot Chat</button><button id="check" class="secondary" type="button" hidden>Check delivery</button><button id="recover" class="secondary" type="button" hidden>Restore message</button><button id="discard" class="secondary" type="button" hidden>Dismiss held message</button><a id="login" class="button secondary" target="_blank" rel="noopener noreferrer" hidden>Hermes Webapp sign-in (new tab)</a><button id="home-toast-details" class="secondary" type="button" hidden>Details</button></div>
+
+    </div>
+  </section>
+  <section id="preview-notice" class="system-notice" role="group" aria-label="Test system notice" data-attention="true" hidden>
+    <svg class="notice-icon" aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
+    <div><span class="system-label">System · visual test</span><p id="preview-text" class="notice">Test error—Local visual preview only. No real failure or message send.</p><button id="dismiss-preview" class="secondary" type="button">Dismiss test error</button></div>
+  </section>
+  </main>
+  </div>
+  <footer class="composer-zone">
+    <button id="jump-latest" class="icon jump-latest" type="button" aria-label="Jump to latest" title="Jump to latest" hidden><svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14m-7-7 7 7 7-7"/></svg></button>
+    <form id="composer" autocomplete="off">
+      <div class="composer">
+        <label class="sr-only" for="draft">Message selected bot</label><textarea id="draft" name="draft" rows="1" maxlength="20000" placeholder="Choose a bot…" aria-describedby="draft-policy" readonly></textarea>
+        <div class="composer-controls">
+        <button class="icon attachment" type="button" hidden disabled aria-label="Attachments unavailable" title="Attachments are not available yet"><svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5v14"/></svg></button>
+        <button class="icon primary" id="send" type="submit" disabled aria-label="Send message"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg></button>
+        </div>
+      </div>
+    </form>
+
+  </footer>
+</div>
+<section id="home-connection-status" class="home-toast" role="region" aria-label="Connection status" tabindex="-1" hidden></section>
+<div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
+<div id="system-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+<div id="preview-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+<dialog id="navigation" class="navigation-dialog" aria-labelledby="navigation-title">
+  <div class="brand"><img src="./assets/artemis.png" width="38" height="38" alt=""><span id="navigation-title" class="wordmark" translate="no">Artemis</span><button id="closeNav" class="icon secondary" type="button" aria-label="Close navigation"><svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <nav class="navigation-list" aria-label="Main navigation"><a id="sidebar-home" href="#view=home" data-view="home"><svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span>Home</span></a></nav>
+  <section class="sidebar-section" aria-labelledby="bots-title"><h2 id="bots-title">Bots</h2><p id="roster-status" class="footnote" role="status">Finding bots on this host…</p><button id="load-bots" class="secondary" type="button" hidden>Retry bot list</button><nav id="bot-list" class="navigation-list" aria-label="Choose a bot"></nav></section>
+  <section class="sidebar-section" aria-labelledby="rooms-title" hidden><h2 id="rooms-title">Rooms</h2><p id="rooms-unavailable" class="footnote">Rooms are not available in this connection.</p></section>
+  <section class="sidebar-section appearance-section" aria-labelledby="theme-title"><h2 id="theme-title">Theme</h2>
+  <button id="theme" class="theme-switch" type="button" role="switch" aria-label="Dark theme" aria-checked="false"><span class="theme-label"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>Light</span><span class="theme-track" aria-hidden="true"><span></span></span><span class="theme-label"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"/></svg>Dark</span></button>
+  <label id="accent-label" class="appearance-label">Accent color</label><button id="accent-trigger" class="accent-trigger" type="button" aria-labelledby="accent-label accent-name" aria-haspopup="dialog" aria-controls="accent-popover" aria-expanded="false"><span id="accent-current" class="accent-swatch" aria-hidden="true"></span><span id="accent-name">Lime</span><svg class="accent-chevron" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+  <p id="appearance-storage-note" class="footnote" role="status" hidden>This browser cannot save appearance preferences. Your choice lasts for this page.</p>
+  <div id="accent-popover" class="accent-popover" popover="auto" role="dialog" aria-label="Choose accent color">
+  <fieldset id="accent-picker" class="accent-picker">
+    <legend>Accent color</legend>
+    <div class="accent-grid">
+      <label class="accent-option"><input class="sr-only" type="radio" name="accent" value="lime" checked><span class="accent-tile"><span class="accent-swatch" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Lime</span></span></label>
+      <label class="accent-option"><input class="sr-only" type="radio" name="accent" value="blue"><span class="accent-tile"><span class="accent-swatch" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Blue</span></span></label>
+      <label class="accent-option"><input class="sr-only" type="radio" name="accent" value="cyan"><span class="accent-tile"><span class="accent-swatch" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Cyan</span></span></label>
+      <label class="accent-option"><input class="sr-only" type="radio" name="accent" value="green"><span class="accent-tile"><span class="accent-swatch" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Green</span></span></label>
+      <label class="accent-option"><input class="sr-only" type="radio" name="accent" value="yellow"><span class="accent-tile"><span class="accent-swatch" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Yellow</span></span></label>
+      <label class="accent-option"><input class="sr-only" type="radio" name="accent" value="orange"><span class="accent-tile"><span class="accent-swatch" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Orange</span></span></label>
+      <label class="accent-option"><input class="sr-only" type="radio" name="accent" value="pink"><span class="accent-tile"><span class="accent-swatch" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Pink</span></span></label>
+      <label class="accent-option"><input class="sr-only" type="radio" name="accent" value="magenta"><span class="accent-tile"><span class="accent-swatch" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Magenta</span></span></label>
+      <label class="accent-option"><input class="sr-only" type="radio" name="accent" value="purple"><span class="accent-tile"><span class="accent-swatch" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Purple</span></span></label>
+      <label class="accent-option"><input class="sr-only" type="radio" name="accent" value="neutral"><span class="accent-tile"><span class="accent-swatch" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Neutral</span></span></label>
+    </div>
+    <p id="accent-storage-note" class="footnote" role="status" hidden>This browser cannot save accent colors. Your choice lasts for this page.</p>
+  </fieldset></div></section>
+</dialog>
+<dialog id="context-menu" class="context-dialog" aria-label="Conversation options"><button id="show-info" type="button" aria-haspopup="dialog" aria-controls="connection-access" aria-expanded="false">Connection &amp; access</button><button id="preview-error" type="button" title="Temporary local visual test; disable before product release" hidden>Preview error (test)</button></dialog>
+<dialog id="connection-access" class="access-dialog" aria-labelledby="access-title">
+  <header><h2 id="access-title">Connection &amp; access</h2><button id="closeAccess" class="icon secondary" type="button" aria-label="Close connection and access"><svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button></header>
+  <p id="connection" class="connection">Not connected</p>
+  <p id="access-state" class="notice">Not connected. Your draft stays in this page; nothing is queued.</p>
+  <p>Artemis uses your Hermes sign-in. Authentication and remote browser access are managed through Hermes—no separate Artemis account is required.</p>
+  <p class="authority-cue">Owner access—not chat-only. No per-device revocation.</p>
+  <h3>Your access and conversation</h3>
+  <div class="authority-body" role="region" aria-label="Full owner authority disclosure" tabindex="0"><p id="draft-policy" class="footnote">Drafts stay in this page only. Nothing is queued offline or resent automatically.</p><p>This Hermes sign-in can administer the host; it is not chat-only or restricted to this device. Manage sign-in and remote access in Hermes. Its all-browser sign-out affects every browser provider and shared profile on the same gateway’s Webapp, not native Desktop or other gateways. Ordinary logout is not equivalent. Valid credentials may still be used to sign in again.</p><p>Each bot opens its canonical Bot Chat. Hermes owns saved messages and conversation policy. Creating a missing Bot Chat always requires your explicit action after verified absence. Drafts and held sends stay with their original host, bot and conversation; no side threads are created.</p></div>
+  <section aria-labelledby="open-code-title"><h3 id="open-code-title">Open Artemis on another browser</h3><p id="open-code-status" class="footnote" role="status">Scan-to-open requires a configured HTTPS Artemis address.</p><img id="open-qr" width="192" height="192" alt="QR code for the Artemis address only; Hermes sign-in is still required" hidden><p><a id="open-url" class="footnote" hidden></a></p></section>
+  <p class="private-scope">No conversation selected</p>
+</dialog>
+<noscript>This conversation requires JavaScript for the authenticated Hermes connection. No message has been sent.</noscript>
+</body>
+</html>

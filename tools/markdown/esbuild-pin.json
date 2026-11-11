@@ -1,0 +1,12 @@
+{
+  "name": "esbuild",
+  "version": "0.28.2",
+  "platform": "win32-x64",
+  "binary_sha256": "c7bee37877d0aa6a046e52783fa0a2cf1a9ce5579d68bb3083bda99d4bff18ef",
+  "publisher_metadata": "https://registry.npmjs.org/esbuild/0.28.2",
+  "publisher_binary_metadata": "https://registry.npmjs.org/@esbuild%2fwin32-x64/0.28.2",
+  "publisher_git_commit": "609683d892977362a0f99026cb74b96263d728a9",
+  "publisher_binary_tarball_integrity": "sha512-5ebpxr3nWMzrL/rnUI755Jkuee0bHL/Gq0WTF9lvcpv73wAp5eu8MfBUgWK9bhWvZjj7yX8etf/8tI8Ney695g==",
+  "acquisition": "Already available local esbuild binary; version and SHA256 match publisher metadata. No tool download/install or lifecycle scripts executed.",
+  "runtime_dependency": false
+}

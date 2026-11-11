@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; connect-src 'self'; base-uri 'none'; object-src 'none'; form-action 'self'">
+<title>Open Artemis</title>
+<script src="./assets/appearance.js"></script>
+<link rel="icon" type="image/png" sizes="180x180" href="/dashboard-plugins/artemis-owner-proof/assets/apple-touch-icon-180.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/dashboard-plugins/artemis-owner-proof/assets/apple-touch-icon-180.png">
+<link rel="stylesheet" href="./assets/signin.css">
+<script type="module" src="./assets/entry.mjs"></script>
+</head>
+<body>
+<main>
+<header><img src="./assets/artemis.png" alt="" width="48" height="48"><span class="wordmark" translate="no">Artemis</span></header>
+<h1>A little less distance.</h1>
+<p>Artemis uses your Hermes sign-in. Authentication and remote browser access are managed through Hermes—no separate Artemis account is required.</p>
+<p class="authority">Owner access—not chat-only. Your Hermes sign-in can also administer this host through other Hermes routes.</p>
+<p id="entry-status" role="status" aria-live="polite">Checking this Artemis connection. Nothing is sent.</p>
+<div class="actions"><a id="entry-login" hidden>Hermes Webapp sign-in</a><a id="entry-open" hidden>Open Artemis</a><button id="entry-check" type="button" hidden>Check sign-in again</button></div>
+<p class="footnote">No automatic sends, account creation or offline queue. Drafts and held messages stay only in their original page; do not close it during sign-in. A reload or closed page loses them.</p>
+<noscript>JavaScript is required to check sign-in and open the protected Artemis page. No message has been sent.</noscript>
+</main>
+</body>
+</html>

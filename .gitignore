@@ -1,0 +1,17 @@
+node_modules/
+.hermes/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+.evidence/
+coverage/
+*.log
+*.zip
+*.tar
+*.tar.gz
+open-config.json
+open-qr.svg

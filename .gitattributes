@@ -1,0 +1,4 @@
+# Preserve reviewed runtime and vendor bytes; do not normalize them on checkout.
+* -text
+# Preserve the existing public MIT license blob across Windows checkouts.
+/LICENSE text eol=lf
