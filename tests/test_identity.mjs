@@ -7,12 +7,12 @@ const read = name => fs.readFileSync(new URL('../' + name, import.meta.url), 'ut
 const old = 'artemis-owner-proof';
 test('manifest, dashboard tab, package version and SDK registry share the renamed identity', () => {
   assert.match(read('plugin.yaml'), /^name: artemis\r?$/m);
-  assert.match(read('plugin.yaml'), /^version: 0\.0\.4\r?$/m);
+  assert.match(read('plugin.yaml'), /^version: 0\.0\.5\r?$/m);
   assert.match(read('plugin.yaml'), /^author: Matterweave Studio\r?$/m);
   assert.match(read('plugin.yaml'), /requires_hermes: '>=0\.23\.0'/);
   const manifest = JSON.parse(read('dashboard/manifest.json'));
   assert.equal(manifest.name, 'artemis'); assert.equal(manifest.tab.path, '/artemis');
-  assert.equal(manifest.version, '0.0.4'); assert.equal(JSON.parse(read('package.json')).version, manifest.version);
+  assert.equal(manifest.version, '0.0.5'); assert.equal(JSON.parse(read('package.json')).version, manifest.version);
   const registered = [], element = (tag, props, ...children) => ({ tag, props, children });
   vm.runInNewContext(read('dashboard/dist/index.js'), { window: { __HERMES_PLUGIN_SDK__: { React: { createElement: element } }, __HERMES_PLUGINS__: { register: (id, component) => registered.push([id, component()]) } } });
   assert.equal(registered.length, 1); assert.equal(registered[0][0], 'artemis');
