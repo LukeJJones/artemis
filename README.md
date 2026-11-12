@@ -16,16 +16,18 @@ Click a screenshot to open the original, or [see all six screenshots](docs/galle
 
 ## Install
 
+> **0.0.4 identity-migration preview—not published yet.** The commands below apply after the renamed package is approved and published. The current public main/catalog submission still uses the old ID; existing users should read the [migration guide](docs/migration.md) before changing installations.
+
 You need **Hermes >=0.23.0**, Bot Mode, a configured model/provider and Hermes Web Access. Keep the Hermes host running and reachable while you use Artemis. Web Access arrived in [Hermes v0.22.6](https://github.com/NousResearch/hermes-agent/releases/tag/v0.22.6); Artemis requires the newer version above.
 
 Run these commands for the Hermes home/profile that serves Web Access:
 
 ```sh
 hermes plugins install https://github.com/LukeJJones/artemis --no-enable
-hermes plugins enable artemis-owner-proof --no-allow-tool-override
+hermes plugins enable artemis --no-allow-tool-override
 ```
 
-Review the installer’s source warning before enabling. Already installed? Back up the plugin and any operator-owned files outside its plugin directory before replacing it; don’t blindly add `--force`. The installed ID is **`artemis-owner-proof`**, even though the repository is named Artemis.
+Review the installer’s source warning before enabling. Already installed? Back up the plugin and any operator-owned files outside its plugin directory before replacing it; don’t blindly add `--force`. The renamed package’s installed ID is **`artemis`**; installing it does not replace or migrate the old identity automatically.
 
 ## Set up and open
 
@@ -34,7 +36,7 @@ Review the installer’s source warning before enabling. Already installed? Back
 3. Open the address below, replacing `https://YOUR-HERMES-ORIGIN` with your actual HTTPS origin, including its port. Sign in through Hermes, return to Artemis and select a bot.
 
 ```text
-https://YOUR-HERMES-ORIGIN/dashboard-plugins/artemis-owner-proof/open.html
+https://YOUR-HERMES-ORIGIN/dashboard-plugins/artemis/open.html
 ```
 
 **Using Tailscale?** Connect the host and remote device to your tailnet with access between them. The host’s full MagicDNS name gives you a hostname, **not TLS or a proxy**. Supply HTTPS through [Tailscale Serve](https://tailscale.com/docs/features/tailscale-serve) or another correctly configured HTTPS server/reverse proxy, with WebSocket forwarding. Tailscale is optional; Funnel is unnecessary for private tailnet access.
@@ -54,8 +56,8 @@ https://YOUR-HERMES-ORIGIN/dashboard-plugins/artemis-owner-proof/open.html
 Close Artemis after handling any draft. Back up operator-owned plugin files before removal, then run:
 
 ```sh
-hermes plugins disable artemis-owner-proof
-hermes plugins remove artemis-owner-proof
+hermes plugins disable artemis
+hermes plugins remove artemis
 ```
 
 This removes the companion, **not your bots or chats**. It does not sign you out or undo networking you configured separately.

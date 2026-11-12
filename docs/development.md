@@ -2,7 +2,7 @@
 
 Start with the [installation and setup guide](../README.md). This operational reference retains the release’s recovery, authority and verification details. Commands below run from the repository root. The plugin remains a companion for **unmodified official Hermes Bot Mode**, not an alternate engine, auth service or history store.
 
-**Version 0.0.3 · community plugin.** The catalog submission pins source commit `1f2620f8ad4e54dc144c24a571fd45bb788e8215`; a submitted PR is not admission or merged catalog approval. The installed ID stays `artemis-owner-proof`. The plugin lives at the repository root, with no `subdir`. Runtime files are already built.
+**Local candidate 0.0.4 · community plugin · ID `artemis`.** This pre-1.0 packaging increment distinguishes the identifier/route migration from submitted0.0.3; it is not a feature or1.0 release. Author attribution and Hermes >=0.23.0 floor are unchanged. The submitted legacy source `1f2620f8ad4e54dc144c24a571fd45bb788e8215` remains the rollback/reference pin; no catalog adoption is implied. The plugin lives at the repository root, with no `subdir`. Runtime files are already built. See [migration](migration.md) for the separate old-ID lifecycle and preview status.
 
 > **Full-owner access, not chat-only.** Your Hermes browser sign-in retains its normal host authority. Artemis does not create a phone-only grant or per-device revocation. Merely reaching the host over LAN or Tailscale is not authorization.
 
@@ -14,16 +14,16 @@ Start with the [installation and setup guide](../README.md). This operational re
 
 ## Install from this repository
 
-Use the intended serving home/profile’s normal Hermes CLI. This is a Git installation, not a catalog-name installation. To install the immutable submitted source:
+Use the intended serving home/profile’s normal Hermes CLI. This is a Git installation, not a catalog-name installation. These renamed-package commands apply only after approved publication; use its reviewed full commit with --ref. The submitted1f2620f pin still installs the legacy identity, so it must not be paired with the new enable command:
 
 ```sh
-hermes plugins install https://github.com/LukeJJones/artemis --ref 1f2620f8ad4e54dc144c24a571fd45bb788e8215 --no-enable
+hermes plugins install https://github.com/LukeJJones/artemis --no-enable
 ```
 
 The installer handles normal source scanning and consent. The plugin declares no Python requirements. Do not bypass warnings. Once deliberately approved:
 
 ```sh
-hermes plugins enable artemis-owner-proof --no-allow-tool-override
+hermes plugins enable artemis --no-allow-tool-override
 hermes plugins list --user --enabled
 ```
 
@@ -36,7 +36,7 @@ The manifest supplies the installed ID even though the repository is named `arte
 Installing the plugin does **not** enable network access. Explicitly configure Web Access in Hermes if needed, then open your existing same-origin HTTPS endpoint:
 
 ```text
-https://YOUR-HERMES-ORIGIN/dashboard-plugins/artemis-owner-proof/open.html
+https://YOUR-HERMES-ORIGIN/dashboard-plugins/artemis/open.html
 ```
 
 Replace the placeholder with the configured origin, including its port. Sign in through Hermes's same-origin page, return to Artemis and deliberately open it, then select a bot. Initial metadata discovery does not open history, create a conversation or send a prompt. The dashboard tab is a compatibility/authority disclosure, not the connected conversation UI.
@@ -122,9 +122,9 @@ Updates are deliberate reviewed changes, not in-app downloads. Review the next s
 To stop using Artemis, close its pages after handling drafts, then deliberately disable it:
 
 ```sh
-hermes plugins disable artemis-owner-proof
+hermes plugins disable artemis
 ```
 
-Use `hermes plugins remove artemis-owner-proof` only after backing up operator-owned plugin files and deciding to remove it. Removal is not Hermes sign-out, credential revocation, chat deletion or reversal of independently configured network exposure.
+Use `hermes plugins remove artemis` only after backing up operator-owned plugin files and deciding to remove it. Removal is not Hermes sign-out, credential revocation, chat deletion or reversal of independently configured network exposure. The old ID has a separate lifecycle described in the migration guide; neither command is a history migration.
 
 Official references: [plugin guide](https://hermes-agent.nousresearch.com/docs/developer-guide/plugins), [catalog rules](https://hermes-agent.nousresearch.com/docs/developer-guide/plugins/catalog-submission), [Web Access documentation](https://hermes-agent.nousresearch.com/docs/reference/cli-commands#hermes-webapp).

@@ -1,9 +1,9 @@
 // Hermes owns authentication. Never consume login_url/next from an API error.
-export const ENTRY_PATH = '/dashboard-plugins/artemis-owner-proof/open.html';
-export const UI_PATH = '/api/plugins/artemis-owner-proof/ui';
-export const CONNECTION_PATH = '/api/plugins/artemis-owner-proof/connection';
-export const OPEN_CONFIG_PATH = '/dashboard-plugins/artemis-owner-proof/open-config.json';
-export const OPEN_QR_PATH = '/dashboard-plugins/artemis-owner-proof/open-qr.svg';
+export const ENTRY_PATH = '/dashboard-plugins/artemis/open.html';
+export const UI_PATH = '/api/plugins/artemis/ui';
+export const CONNECTION_PATH = '/api/plugins/artemis/connection';
+export const OPEN_CONFIG_PATH = '/dashboard-plugins/artemis/open-config.json';
+export const OPEN_QR_PATH = '/dashboard-plugins/artemis/open-qr.svg';
 
 function page(value) {
   if (typeof value !== 'string' || /[\\\u0000-\u0020\u007f]/.test(value)) throw new Error('Unsupported Artemis URL');
