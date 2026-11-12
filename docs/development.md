@@ -14,10 +14,10 @@ Start with the [installation and setup guide](../README.md). This operational re
 
 ## Install from this repository
 
-Use the intended serving home/profile’s normal Hermes CLI. This is a Git installation, not a catalog-name installation. These renamed-package commands apply only after approved publication; use its reviewed full commit with --ref. The submitted1f2620f pin still installs the legacy identity, so it must not be paired with the new enable command:
+Use the intended serving home/profile’s normal Hermes CLI. This is a Git installation, not a catalog-name installation. These renamed-package commands apply only after approved publication. Replace `FULL_REVIEWED_NEW_COMMIT_SHA` below with the actual reviewed, published **40-character hexadecimal SHA of the new package**. It is a placeholder, not a literal argument. Never use the old submitted `1f2620f8ad4e54dc144c24a571fd45bb788e8215` SHA here: it installs the legacy identity and must not be paired with the new enable command.
 
 ```sh
-hermes plugins install https://github.com/LukeJJones/artemis --no-enable
+hermes plugins install https://github.com/LukeJJones/artemis --ref FULL_REVIEWED_NEW_COMMIT_SHA --no-enable
 ```
 
 The installer handles normal source scanning and consent. The plugin declares no Python requirements. Do not bypass warnings. Once deliberately approved:

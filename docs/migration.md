@@ -19,16 +19,26 @@ Hermes derives the installed identity from the manifest. Installing the new mani
 
 ## Supported manual lifecycle
 
-Only after the renamed source has been approved and published, install it disabled and check that discovery actually lists the new `artemis` identity. Use --ref with the reviewed new full commit when pinning; the old1f2620f commit is not that commit.
+Only after the renamed source has been approved and published, install it disabled and check that discovery actually lists the new `artemis` identity. Replace `FULL_REVIEWED_NEW_COMMIT_SHA` below with the actual reviewed, published **40-character hexadecimal SHA of the new package**. It is a placeholder, not a literal argument; never substitute the old submitted `1f2620f8ad4e54dc144c24a571fd45bb788e8215` SHA, which installs the old ID.
 
 ```sh
-hermes plugins install https://github.com/LukeJJones/artemis --no-enable
-hermes plugins list --user
-hermes plugins disable artemis-owner-proof
-hermes plugins remove artemis-owner-proof
-hermes plugins enable artemis --no-allow-tool-override
+hermes plugins install https://github.com/LukeJJones/artemis --ref FULL_REVIEWED_NEW_COMMIT_SHA --no-enable &&
+hermes plugins list --user &&
+hermes plugins disable artemis-owner-proof &&
 hermes plugins list --user
 ```
+
+**Stop here and verify before continuing.** Every command above must succeed. Discovery must show `artemis` installed but disabled and `artemis-owner-proof` disabled. Confirm the supported lifecycle reports that the old plugin is inactive; a missing gateway response or restart/rescan requirement is not confirmation. Resolve that condition first, obtaining separate approval for any interrupting restart. If disabling failed or the old plugin is still active, do not remove it or enable the new identity.
+
+Only after that checkpoint, run this separate fail-stop chain. A failed removal must prevent enabling the new plugin:
+
+```sh
+hermes plugins remove artemis-owner-proof &&
+hermes plugins enable artemis --no-allow-tool-override &&
+hermes plugins list --user
+```
+
+The `&&` operators stop each chain on the first failure. Do not run later commands or the second block manually to bypass a failure or an unverified checkpoint.
 
 The initial new install can coexist **disabled** while the old plugin stays enabled. Disable/remove the old ID only after preserving its files and verifying the new candidate; then enable the new ID deliberately. Do not use --force to make one identity replace another. These commands use supported Hermes plugin lifecycle; no custom automatic migration script is shipped.
 
