@@ -16,7 +16,7 @@ Click a screenshot to open the original, or [see all six screenshots](docs/galle
 
 ## Install
 
-> **0.0.4 identity-migration preview—not published yet.** The commands below apply after the renamed package is approved and published. The current public main/catalog submission still uses the old ID; existing users should read the [migration guide](docs/migration.md) before changing installations.
+> **Upgrading to 0.0.4?** The installed ID is now `artemis`. Existing users should read the [migration guide](docs/migration.md) before changing installations; the old identity is not replaced automatically.
 
 You need **Hermes >=0.23.0**, Bot Mode, a configured model/provider and Hermes Web Access. Keep the Hermes host running and reachable while you use Artemis. Web Access arrived in [Hermes v0.22.6](https://github.com/NousResearch/hermes-agent/releases/tag/v0.22.6); Artemis requires the newer version above.
 

@@ -2,7 +2,7 @@
 
 Start with the [installation and setup guide](../README.md). This operational reference retains the release’s recovery, authority and verification details. Commands below run from the repository root. The plugin remains a companion for **unmodified official Hermes Bot Mode**, not an alternate engine, auth service or history store.
 
-**Local candidate 0.0.4 · community plugin · ID `artemis`.** This pre-1.0 packaging increment distinguishes the identifier/route migration from submitted0.0.3; it is not a feature or1.0 release. Author attribution and Hermes >=0.23.0 floor are unchanged. The submitted legacy source `1f2620f8ad4e54dc144c24a571fd45bb788e8215` remains the rollback/reference pin; no catalog adoption is implied. The plugin lives at the repository root, with no `subdir`. Runtime files are already built. See [migration](migration.md) for the separate old-ID lifecycle and preview status.
+**Version 0.0.4 · community plugin · ID `artemis`.** This pre-1.0 packaging increment distinguishes the identifier/route migration from 0.0.3; it is not a feature or1.0 release. Author attribution and Hermes >=0.23.0 floor are unchanged. Legacy source `1f2620f8ad4e54dc144c24a571fd45bb788e8215` is a rollback pin for the old identity only; no catalog approval is claimed. The plugin lives at the repository root, with no `subdir`. Runtime files are already built. See [migration](migration.md) for the separate old-ID lifecycle.
 
 > **Full-owner access, not chat-only.** Your Hermes browser sign-in retains its normal host authority. Artemis does not create a phone-only grant or per-device revocation. Merely reaching the host over LAN or Tailscale is not authorization.
 
@@ -14,7 +14,7 @@ Start with the [installation and setup guide](../README.md). This operational re
 
 ## Install from this repository
 
-Use the intended serving home/profile’s normal Hermes CLI. This is a Git installation, not a catalog-name installation. These renamed-package commands apply only after approved publication. Replace `FULL_REVIEWED_NEW_COMMIT_SHA` below with the actual reviewed, published **40-character hexadecimal SHA of the new package**. It is a placeholder, not a literal argument. Never use the old submitted `1f2620f8ad4e54dc144c24a571fd45bb788e8215` SHA here: it installs the legacy identity and must not be paired with the new enable command.
+Use the intended serving home/profile’s normal Hermes CLI. This is a Git installation, not a catalog-name installation. Install an immutable reviewed release by replacing `FULL_REVIEWED_NEW_COMMIT_SHA` below with the actual reviewed, published **40-character hexadecimal SHA of the new package**. It is a placeholder, not a literal argument. Never use the old submitted `1f2620f8ad4e54dc144c24a571fd45bb788e8215` SHA here: it is a rollback reference for the legacy identity only and must not be paired with the new enable command.
 
 ```sh
 hermes plugins install https://github.com/LukeJJones/artemis --ref FULL_REVIEWED_NEW_COMMIT_SHA --no-enable
@@ -75,7 +75,7 @@ Drafts and held messages remain scoped to the original host, bot and conversatio
 
 ## Verification and development
 
-Recorded evidence for submitted source `1f2620f8ad4e54dc144c24a571fd45bb788e8215`, on official Hermes v0.23.0 / Windows / Python 3.14.9:
+Historical evidence for the 0.0.3 rollback package, on official Hermes v0.23.0 / Windows / Python 3.14.9:
 
 - Normal CLI validation of a fresh anonymous public clone: exit 0, all 15 emitted checks passed, security `safe`, warnings `[]`.
 - 189 synthetic unit tests, syntax/JSON checks and deterministic Markdown rebuild passed for that source.
@@ -83,7 +83,7 @@ Recorded evidence for submitted source `1f2620f8ad4e54dc144c24a571fd45bb788e8215
 - Reused isolated HTTP harness: 32 checks, including 20 exact public assets, anonymous rejection, ephemeral-owner access and scoped process cleanup.
 - A supplementary whole-core Git-diff probe was incomplete. It was retained separately, not called a clean core audit or used to replace the installer/HTTP evidence.
 
-These are bounded historical results, **not** a fresh audit of this documentation branch, catalog CI/admission, fresh-OS, remote OAuth, physical-device or message-continuity certification. They supersede the earlier directory-copy-only installation checkpoint. Installer warnings are separate from validator warnings: the real installer warns about a custom/unreviewed source, and the live replacement also printed a skipped Node-dependency notice despite package.json containing no dependency groups. No warning was bypassed or hidden. For a later runtime change, validate its exact reviewed checkout in an isolated supported Hermes runtime:
+These bounded rollback-package results are **not current 0.0.4 acceptance evidence**, catalog CI/admission, fresh-OS, remote OAuth, physical-device or message-continuity certification. They supersede the earlier directory-copy-only installation checkpoint. Installer warnings are separate from validator warnings: the real installer warns about a custom/unreviewed source, and the recorded 0.0.3 live replacement also printed a skipped Node-dependency notice despite package.json containing no dependency groups. No warning was bypassed or hidden. For a later runtime change, validate its exact reviewed checkout in an isolated supported Hermes runtime:
 
 ```sh
 hermes plugins validate /path/to/artemis --install-deps --json

@@ -2,11 +2,11 @@
 
 [Back to setup](../README.md)
 
-## Preview status and version
+## Identity and version
 
-This local candidate changes the installed identity from `artemis-owner-proof` (0.0.3) to **`artemis` (0.0.4)**. The pre-1.0 patch increment records a packaging/URL migration, not new functionality or a1.0 stability claim. Author attribution and the Hermes >=0.23.0 floor are unchanged.
+Version 0.0.4 changes the installed identity from `artemis-owner-proof` (0.0.3) to **`artemis` (0.0.4)**. The pre-1.0 patch increment records a packaging/URL migration, not new functionality or a1.0 stability claim. Author attribution and the Hermes >=0.23.0 floor are unchanged.
 
-**The candidate is not published.** Public main and catalog PR #154018 still reference submitted commit `1f2620f8ad4e54dc144c24a571fd45bb788e8215`. Nothing here updates that PR or its pin. Do not run the new-ID instructions against that old commit and expect a rename. New public-URL installation must be rechecked after approved publication.
+**Legacy rollback only:** commit `1f2620f8ad4e54dc144c24a571fd45bb788e8215` contains the old 0.0.3 identity. Retain it for a deliberately reviewed rollback, not as the installation pin for the new ID. Publication does not itself imply catalog approval.
 
 Hermes derives the installed identity from the manifest. Installing the new manifest creates a **separate plugin**, not an update/rename of the old slot. Do not leave both identities enabled or assume an installer will preserve/remove the other one for you.
 
@@ -19,7 +19,7 @@ Hermes derives the installed identity from the manifest. Installing the new mani
 
 ## Supported manual lifecycle
 
-Only after the renamed source has been approved and published, install it disabled and check that discovery actually lists the new `artemis` identity. Replace `FULL_REVIEWED_NEW_COMMIT_SHA` below with the actual reviewed, published **40-character hexadecimal SHA of the new package**. It is a placeholder, not a literal argument; never substitute the old submitted `1f2620f8ad4e54dc144c24a571fd45bb788e8215` SHA, which installs the old ID.
+Install the reviewed renamed release disabled and check that discovery actually lists the new `artemis` identity. Replace `FULL_REVIEWED_NEW_COMMIT_SHA` below with the actual reviewed, published **40-character hexadecimal SHA of the new package**. It is a placeholder, not a literal argument; never substitute the old submitted `1f2620f8ad4e54dc144c24a571fd45bb788e8215` SHA, which is a rollback reference for the old ID only.
 
 ```sh
 hermes plugins install https://github.com/LukeJJones/artemis --ref FULL_REVIEWED_NEW_COMMIT_SHA --no-enable &&
@@ -40,9 +40,9 @@ hermes plugins list --user
 
 The `&&` operators stop each chain on the first failure. Do not run later commands or the second block manually to bypass a failure or an unverified checkpoint.
 
-The initial new install can coexist **disabled** while the old plugin stays enabled. Disable/remove the old ID only after preserving its files and verifying the new candidate; then enable the new ID deliberately. Do not use --force to make one identity replace another. These commands use supported Hermes plugin lifecycle; no custom automatic migration script is shipped.
+The initial new install can coexist **disabled** while the old plugin stays enabled. Disable/remove the old ID only after preserving its files and verifying the new package; then enable the new ID deliberately. Do not use --force to make one identity replace another. These commands use supported Hermes plugin lifecycle; no custom automatic migration script is shipped.
 
-For this unpublished candidate, local verification uses the normal Git installer against an immutable **local file:// Git URL**, not a manual copy. That demonstrates local Git/manifest/lifecycle behavior, not public GitHub availability of the new commit. No dependency downloads or core source changes are permitted for that proof.
+Pre-publication migration checks used the normal Git installer against an immutable **local file:// Git URL**, not a manual copy, with offline dependency settings and no core source changes. Those checks demonstrate local Git/manifest/lifecycle behavior; they do not by themselves certify public GitHub installation of a release. Verify public installation against its exact reviewed, published pin as a separate gate.
 
 ## Bookmarks, history and browser state
 
@@ -60,4 +60,4 @@ Already-running host modules/discovery caches can outlive file changes. Supporte
 
 ## Rollback
 
-If the candidate cannot be admitted or hosted, preserve the failure evidence and disable/remove only `artemis` through the supported lifecycle before restoring the reviewed old package/ID from the exact backup or old full pin. Restore the prior enabled state deliberately, and use the old bookmark again. Keep operator extras safe outside removal targets. Do not restore whole-host auth/config/history or rewind unrelated plugins. No personal-data rollback or browser cache clearing is involved.
+If the new package cannot be admitted or hosted, preserve the failure evidence and disable/remove only `artemis` through the supported lifecycle before restoring the reviewed old package/ID from the exact backup or old full pin. Restore the prior enabled state deliberately, and use the old bookmark again. Keep operator extras safe outside removal targets. Do not restore whole-host auth/config/history or rewind unrelated plugins. No personal-data rollback or browser cache clearing is involved.
