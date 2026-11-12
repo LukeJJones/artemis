@@ -4304,7 +4304,7 @@ async function boot(allowIdentityRecovery = false) {
 
   booting = true;
   try {
-    const response = await fetch(new URL('/api/plugins/artemis-owner-proof/connection', location.origin), { credentials: 'same-origin', cache: 'no-store', redirect: 'error' });
+    const response = await fetch(new URL('/api/plugins/artemis/connection', location.origin), { credentials: 'same-origin', cache: 'no-store', redirect: 'error' });
     if (response.status === 401) { setRosterState('auth', 'Hermes sign-in is needed. No automatic retry.'); $('connect').hidden = false; $('login').hidden = !prepareSignIn(); renderNotice('auth', 'Use Hermes Webapp sign-in in a new tab, then return here and choose Connect. Keep this page open; drafts stay only here. Nothing is resent.'); return; }
     if (!response.ok) throw new Error('Settings unavailable');
     const settings = await response.json();
